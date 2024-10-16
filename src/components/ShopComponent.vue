@@ -14,7 +14,7 @@ const books: Book[] = bookStore.getAllBooks();
     <div class="wrapper">
         <h1 class="w-full my-4 p-4 text-4xl">Tienda</h1>
         <div
-            class="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 p-2">
+            class="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2 p-2">
             <div v-for="book in books" :key="book.id" class="item-wrapper">
                 <div class="img-cover">
                     <img :src="book.coverImg" v-bind:alt="book.title">
