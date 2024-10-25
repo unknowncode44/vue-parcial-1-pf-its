@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
 import { useBookStore } from '@/stores/BookStore';
 import type { Book } from '@/models/BookModel'
+import { useCartStore } from '@/stores/CartStore'
+
+const cartStore = useCartStore()
+const cart = reactive(cartStore)
 
 // libreria
 import Rating from 'primevue/rating';
@@ -27,7 +32,7 @@ const books: Book[] = bookStore.getAllBooks();
                 <div class="price">$ {{ book.price }}.00</div>
                 <div class="overlay">
                     <!-- al hacer click en comprar el libro debera agregarse al carro -->
-                    <button class="btn-buy">Comprar</button>
+                    <button @click="cart.addBookToCart(book)" class="btn-buy">Comprar</button>
                 </div>
             </div>
         </div>

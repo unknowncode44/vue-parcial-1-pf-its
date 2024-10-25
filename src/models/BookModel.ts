@@ -12,3 +12,4 @@ export interface Book {
     rating: number;
     publisher: string
 }
+

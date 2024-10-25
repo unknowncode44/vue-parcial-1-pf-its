@@ -255,7 +255,7 @@ export const books: Book[] = [
     },
     {
         id: 19,
-        title: "Harry Potter and the Half-Blood Prince",
+        title: "Harry Potter y el misterio del principe",
         author: "J.K. Rowling",
         series: "Harry Potter",
         numberInSeries: 6,

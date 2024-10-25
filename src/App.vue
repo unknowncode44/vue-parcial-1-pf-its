@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { BookOpenIcon, HomeIcon, ShoppingBagIcon, XCircleIcon } from '@heroicons/vue/24/outline';
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useCartStore } from '@/stores/CartStore'
+import CartComponent from '@/components/CartComponent.vue';
 
 // librerias
 import Sidebar from 'primevue/sidebar'
 
 // Parcial: instanciar nuestro useCartStore en una variable const para utilizarla en el componente
 // Parcial: obtener la cantidad de libros en carrito del cartStore y pasarlo en qty tag
+
+const cartStore = useCartStore()
+
+// amount of books in cart 
+const cart = reactive(cartStore)
 
 // Barra Lateral
 const sidebarVisible = ref(false)
@@ -46,7 +53,8 @@ function openCloseSidebar() {
       </RouterLink>
       <div class="bag-icon" @click="openCloseSidebar()">
         <!-- modificar con la cantidad de items en carro. Si el carro esta vacio. -->
-        <div class="qty-tag">1</div>
+        <div v-show="cartStore.booksOnCart > 0" class="qty-tag">{{
+        cartStore.booksOnCart }}</div>
         <ShoppingBagIcon class="w-6 mr-2 text-slate-200" />
       </div>
     </div>
@@ -60,6 +68,7 @@ function openCloseSidebar() {
           <XCircleIcon class="h-8 w-8" @click="openCloseSidebar" />
         </div>
         <!-- aca insertar CarroComponent -->
+        <CartComponent></CartComponent>
       </div>
     </template>
   </Sidebar>
@@ -101,7 +110,8 @@ nav {
   width: 400px;
   max-height: 100vh;
   height: 100vh;
-  background: #fff;
+  background: rgb(185, 185, 185);
+  position: relative;
 }
 
 .sidebar-header {
